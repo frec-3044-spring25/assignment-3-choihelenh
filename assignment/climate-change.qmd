@@ -64,7 +64,7 @@ ggplot(monthly_co2, aes(x = month, y = mean_co2)) +
 
 
 **Answer 2:**
-CO2 increases during the colder months(Fall and Winter) and decreases during the warmer months(Spring and Summer). The month it is at its maximum is in May and the month it is at its minimum is September. This might be explained by there being more plants absorbing CO2 through photosynthesis in the warmer months. When they die and lose their leaves in the colder months, this causes there to be more CO2 in the atmosphere. Also, the decomposition of plants can also explain this increase in CO2.
+CO2 increases during the colder months(Fall and Winter) and decreases during the warmer months(Spring and Summer). The month CO2 concentration is at its maximum is in May and the month it is at its minimum is September. This decrease in concentration in warmer months might be explained by there being more plants absorbing CO2 through photosynthesis which decreases the amount in the atmosphere. In the colder months, the increase in CO2 might be explained by plants dying and losing their leaves, which causes less CO2 to be absorbed by these plants. Also, the decomposition of these dying planst can also cause more CO2 to be released in the atmosphere.
 
 
 ## Global Temperature Data
