@@ -1,6 +1,6 @@
 ---
 title: "Climate Change Module"
-author: 'Add name'
+author: 'Helen Choi'
 format:
   html:
     embed-resources: true
@@ -44,13 +44,27 @@ ggplot(co2, aes(x = decimal_date, y = monthly_average)) +
 Describe the overall trend in the CO2 data.
 
 **Answer 1:**
+The overall trend in the CO2 data shows an increase in CO2 concentration over the time of 1960 to the present. This graph shows that CO2 concentration has been consistently rising over the years, this is likely due to more pollution from things such as human activity and the burning of fossil fuels.
 
 **Question 2:**
 
 How does CO2 vary within a year?  What month is it at max?  Min?  What might explain this sub-annual pattern? (you will need to write code and make a plot to answer this question)
 
-**Answer 2:**
+```{r}
+monthly_co2 <- co2 |> 
+  group_by(month) |> 
+  summarize(mean_co2 = mean(monthly_average, na.rm = TRUE))
 
+ggplot(monthly_co2, aes(x = month, y = mean_co2)) + 
+  geom_line() + 
+  geom_point() +
+  labs(x = "Month", y = "Average CO2 Concentration (ppm)",
+       title = "Average Monthly CO2 Concentration") 
+```
+
+
+**Answer 2:**
+CO2 increases during the colder months(Fall and Winter) and decreases during the warmer months(Spring and Summer). The month it is at its maximum is in May and the month it is at its minimum is September. This might be explained by there being more plants absorbing CO2 through photosynthesis in the warmer months. When they die and lose their leaves in the colder months, this causes there to be more CO2 in the atmosphere. Also, the decomposition of plants can also explain this increase in CO2.
 
 
 ## Global Temperature Data
