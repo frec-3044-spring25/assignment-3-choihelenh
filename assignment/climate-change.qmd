@@ -36,7 +36,9 @@ co2
 ggplot(co2, aes(x = decimal_date, y = monthly_average)) + 
   geom_line() + 
   geom_line(aes(y = deseasonalized), color = "blue") +
-  labs(x = "Year", y = "CO2 concentration (ppm)")
+  labs(x = "Year", y = "CO2 concentration (ppm)",
+       title = "Overall Trend in CO2 Concentration over Time"
+)
 ```
 
 **Question 1:**
@@ -83,8 +85,12 @@ Describe the data set to the best of your ability, given the documentation provi
 - Describe the class of each column and what units it is measured in. 
 - What is the difference between "global temperature" and "global temperature anomaly"? 
 
-**Answer 3:**
+```{r}
+```
 
+
+**Answer 3:**
+The data for this global mean temperature data is from NASA taken from Earth. 
 
 **Question 4:**
 
