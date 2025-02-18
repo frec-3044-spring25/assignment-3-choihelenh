@@ -136,6 +136,16 @@ You will use rolling averages to help you explore the evidence for a pause. Sinc
 Use a search engine (e.g., Google) or a chat LLM to find out how to calculate a rolling average in R. What search term or chat LLM prompt did you use?  What website or answer from the chat LLM did you end up using?  How much did you need to modify the code from the website or chat LLM to answer the question successfully?
 
 **Answer 6:**
+```{r}
+library(zoo)
+rollingAvg <- rollmean(tempData$No_Smoothing, k = 7, align = "right", fill = NA)
+rollingAvg
+```
+
+To answer this question I just looked up in google "How to calculate a rolling average in R". I found a good explanation on the GeeksforGeeks website: https://www.geeksforgeeks.org/how-to-calculate-a-rolling-average-in-r/
+that provided a good example using the rollmean() function from the zoo package:
+rolling_avg <- rollmean(temperature_xts, k = 7, align = "right", fill = NA).
+I did not need to modify my code too much, only changing the dataset that is being used.
 
 **Question 7:**
 
