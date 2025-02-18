@@ -243,8 +243,8 @@ head(Vostok)
 
 ```{r}
 VostokUpdate <- Vostok |>
-  mutate(Calendar_Year = 1950 - meanAirAge_BP) |>
-  arrange(Calendar_Year)
+  mutate(year = 1950 - meanAirAge_BP) |>
+  arrange(year)
 
 head(VostokUpdate)
 ```
@@ -263,20 +263,37 @@ ggplot(VostokUpdate, aes(x = meanAirAge_BP, y = CO2_ppmv)) +
 - Combine this time series with the Mauna Loa data (the Warm-up exercise in this assignment).  You will use "bind_rows()".
 
 ```{r}
+VostokBind <- VostokUpdate |>
+  select(year, CO2_ppmv) |>  
+  rename(CO2 = CO2_ppmv) 
 
+# Find CO2 Concentrations Yearly of the Mauna Loa Data
+co2Bind <- co2 |>
+  group_by(year) |>
+  summarize(mean_co2 = mean(monthly_average, na.rm = TRUE)) |>
+  rename(CO2 = mean_co2) 
 ```
 
+```{r}
+combinedData <- bind_rows(VostokBind, co2Bind)
+```
 
 - Plot the combined data. (the most recent time period must be on the right side of the plot).        
 
 ```{r}
-
+ggplot(combinedData, aes(x = year, y = CO2)) +
+  geom_line(color = "blue") +
+  labs(x = "Year",
+       y = "CO2 Concentration",
+       title = "Recent vs Historic CO2 Levels Over Time from Vostok & Mauna Loa"
+)
+```
 ```
 
 - Describe your conclusions to the question "How do recent atmospheric CO2 levels compare to historical levels?" using your plot as supporting evidence.   
 
 **Answer 10:**
-Done above.
+The recent atmospheric CO2 levels are significantly higher compared to historical levels. This is shown in the plot as, in recent years the CO2 levels have skyrocketed. This can be explained by more human effect on the environment in recent years comparatively to the past.
 
 # Render and committing
 
@@ -286,6 +303,9 @@ Remember to Render your document as HTML and comment+push to GitHub your code an
 
 Include citation of any AI-generated assistance or discussion with classmates (per policy in syllabus). Proper documentation of AI-generated assistance includes the prompt, the source (e.g., ChatGPT), and the significant parts of the response.  Proper documentation of discussion with classmates include listing their names and the components discussed.  
 
--Looked up what Years Before Present units were to answer Question 10
+-Looked up what Years Before Present units conversion were to answer Question 10
+Given: A date of 3000 BP
+Calculation: 1950 - 3000 = -1050
+
 -Used ChatGPT for assistance with reading in data by using the skip parameter to skip rows
 
