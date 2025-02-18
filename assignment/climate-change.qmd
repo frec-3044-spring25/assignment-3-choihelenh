@@ -153,12 +153,36 @@ I did not need to modify my code too much, only changing the dataset that is bei
 - Create a data frame from the annual temperature anomaly data (from Question 4) with three new columns: 5-year running averages, 10-year running averages, and 20-year running averages.
 
 **Answer 7:**
+An annual average represents the temperature anomaly for a single year. It shows how much that year's temperature deviated from a baseline temperature. A 5-year average is a rolling mean that averages temperature anomalies of the previous 5 years and how that changed from a baseline temperature.
+
+```{r}
+tempData2 <- tempData |> 
+  select(Year, No_Smoothing) |> 
+  mutate(
+    running5 = rollmean(No_Smoothing, k = 5, align = "right", fill = NA),
+    running10 = rollmean(No_Smoothing, k = 10, align = "right", fill = NA),
+    running20 = rollmean(No_Smoothing, k = 20, align = "right", fill = NA)
+  )
+head(tempData2)
+```
 
 **Question 8:**
 
 Plot the different averages on the *same plot* and describe what differences you see and why.  
 
 **Answer 8:**
+```{r}
+ggplot(tempData2, aes(x = Year)) +
+  geom_line(aes(y = running5), color = "blue") +
+  geom_line(aes(y = running10), color = "red") +
+  geom_line(aes(y = running20), color = "green") +
+  labs(x = "Year", y = "Temperature Anomaly",
+       title = "Rolling Averages of Global Mean Temperature Anomalies")
+```
+
+Legend: 5-year running averages: Blue, 10-year running averages: Red, 20-year running averages: Green
+
+The differences I see between these plots, is the larger the time window, the smoother the line becomes. The green line(20 years) is the smoothest and the blue line(5 years) shows more variability. This is because the longer running averages cause less fluctuations which makes long term trends easier to see.
 
 **Question 9:**
 
