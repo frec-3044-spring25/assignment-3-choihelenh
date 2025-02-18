@@ -85,12 +85,9 @@ Describe the data set to the best of your ability, given the documentation provi
 - Describe the class of each column and what units it is measured in. 
 - What is the difference between "global temperature" and "global temperature anomaly"? 
 
-```{r}
-```
-
 
 **Answer 3:**
-The data for this global mean temperature data is from NASA taken from Earth. 
+This dataset represents Global Land-Ocean Temperature Index on Earth. It is from NASA/GISS and shows information on global warming trends. The first column is year which is an integer as the years are represented in whole numbers. The second column is No_Smoothing which is the class numeric as the values are represented as decimal numbers. The units are in Celsius. The third column is Lowess(5) which is also the class numeric and the units are also in Celsius. The difference between global temperature and global temperature anomaly is that global temperature is the actual measured surface temperature at a given time. Global Temperature Anomaly is the difference between the measured surface temperature at a given time from a historical baseline temperature. 
 
 **Question 4:**
 
