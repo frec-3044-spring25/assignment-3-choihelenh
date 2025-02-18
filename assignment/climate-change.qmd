@@ -222,20 +222,61 @@ Your answer to Question 10 is going to be a mix of code chunks and text that you
 
 - Describe the data set: what are the columns and units? Where do the numbers come from? 
 
-- What is the temporal resolution of the data? 
-- Read in and prepare data for analysis.   
-- Reverse the ordering to create a chronological record so that each measurement is associcated with calender year.
-- Plot data.  
-- Combine this time series with the Mauna Loa data (the Warm-up exercise in this assignment).  You will use "bind_rows()".
-- Plot the combined data. (the most recent time period must be on the right side of the plot).        
-- Describe your conclusions to the question "How do recent atmospheric CO2 levels compare to historical levels?" using your plot as supporting evidence.   
+The numbers from this dataset are retrieved from ice cores extracted from the Vostok research station in Antarctica. The first column is depth in meters. This is the depth of the ice core sample. The second column is the Age of the ice in the units years before present(BP). The third column is the Mean age of the air in the units years before present(BP). This is the average age of the trapped air in the ice core sample. The fourth column is the CO2 concentration in the units parts per million by volume(ppmv). This measured the CO2 concentration in the ice core samples from the trapped air.
 
-**Answer 10:**
+- What is the temporal resolution of the data? 
+
+The dataset spans over 400,000 years before the present day. The measurements are spaced over hundreds to thousands of years apart.
+
+- Read in and prepare data for analysis.
+
+```{r}
+Vostok <- read_table("https://data.ess-dive.lbl.gov/catalog/d1/mn/v2/object/ess-dive-457358fdc81d3a5-20180726T203952542",
+          skip = 20,
+          col_names = c("Depth_m", "iceAge_BP", 
+                        "meanAirAge_BP", "CO2_ppmv"))
+
+head(Vostok)
+```
+
+- Reverse the ordering to create a chronological record so that each measurement is associated with calender year.
+
+```{r}
+VostokUpdate <- Vostok |>
+  mutate(Calendar_Year = 1950 - meanAirAge_BP) |>
+  arrange(Calendar_Year)
+
+head(VostokUpdate)
+```
+
+- Plot data.  
+
+```{r}
+ggplot(VostokUpdate, aes(x = meanAirAge_BP, y = CO2_ppmv)) +
+  geom_line(color = "blue") +
+  labs(x = "Year",
+       y = "CO2 Concentration (ppmv)",
+       title = "CO2 Concentrations from Vostok Ice Core Over Time"
+)
+```
+
+- Combine this time series with the Mauna Loa data (the Warm-up exercise in this assignment).  You will use "bind_rows()".
 
 ```{r}
 
+```
+
+
+- Plot the combined data. (the most recent time period must be on the right side of the plot).        
+
+```{r}
 
 ```
+
+- Describe your conclusions to the question "How do recent atmospheric CO2 levels compare to historical levels?" using your plot as supporting evidence.   
+
+**Answer 10:**
+Done above.
 
 # Render and committing
 
@@ -245,5 +286,6 @@ Remember to Render your document as HTML and comment+push to GitHub your code an
 
 Include citation of any AI-generated assistance or discussion with classmates (per policy in syllabus). Proper documentation of AI-generated assistance includes the prompt, the source (e.g., ChatGPT), and the significant parts of the response.  Proper documentation of discussion with classmates include listing their names and the components discussed.  
 
-
+-Looked up what Years Before Present units were to answer Question 10
+-Used ChatGPT for assistance with reading in data by using the skip parameter to skip rows
 
