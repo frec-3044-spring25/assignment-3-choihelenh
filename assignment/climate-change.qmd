@@ -189,6 +189,7 @@ The differences I see between these plots, is the larger the time window, the sm
 By examining the data here, what evidence do you find or not find for such a pause? 
 
 **Answer 9:**
+By examining the data, there is little evidence to indicate that there was a significant pause in global warming based on the three rolling averages. The long-term indicates that the trend of temperature is consistently increasing indicated by the upward moving line. The pause that could have been seen could have just been explained by things such as variability in climate at Earth.
 
 ## Longer term trends in CO2 Records
 
@@ -220,6 +221,7 @@ The broad question is: how do recent atmospheric CO2 levels compare to historica
 Your answer to Question 10 is going to be a mix of code chunks and text that you put below in "Answer 10:"
 
 - Describe the data set: what are the columns and units? Where do the numbers come from? 
+
 - What is the temporal resolution of the data? 
 - Read in and prepare data for analysis.   
 - Reverse the ordering to create a chronological record so that each measurement is associcated with calender year.
